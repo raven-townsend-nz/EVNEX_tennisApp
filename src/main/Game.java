@@ -5,8 +5,14 @@ public class Game {
     /** If a player reaches this score and is ahead by WINNING_MARGIN then they win the game */
     private static final int WINNING_SCORE = 4;
 
+    /** In a tie-break, if a player reaches this score and is ahead by WINNING_MARGIN then they win the game */
+    private static final int TIE_BREAK_WINNING_SCORE = 7;
+
     /** If a player reaches the WINNING_SCORE and is ahead by this margin then they win the game */
     private static final int WINNING_MARGIN = 2;
+
+    /** The winnnig score for this game. This could be either WINNING_SCORE or TIE_BREAK_WINNING_SCORE */
+    private final int gameWinningScore;
 
     /** True if this game is a tie breaker, in which case the score will be 1, 2, 3 rather than 15, 30, 40 */
     private final boolean isTieBreaker;
@@ -34,6 +40,11 @@ public class Game {
         this.player2 = player2;
         player1Points = 0;
         player2Points = 0;
+        if (isTieBreaker) {
+            gameWinningScore = TIE_BREAK_WINNING_SCORE;
+        } else {
+            gameWinningScore = WINNING_SCORE;
+        }
     }
 
 
@@ -43,7 +54,7 @@ public class Game {
      */
     public String getScore() {
 
-        if (player1Points >= WINNING_SCORE || player2Points >= WINNING_SCORE) {
+        if (player1Points >= gameWinningScore || player2Points >= gameWinningScore) {
             if (player1Points == player2Points) {
                 return "Deuce";
             } else if (player1Points > player2Points) {
@@ -88,9 +99,9 @@ public class Game {
      * @return an int representing which player won (1 or 2). -1 if the game has not been won yet.
      */
     public int getWinner() {
-        if (player1Points >= WINNING_SCORE && player1Points >= player2Points + WINNING_MARGIN) {
+        if (player1Points >= gameWinningScore && player1Points >= player2Points + WINNING_MARGIN) {
             return 1;
-        } else if (player2Points >= WINNING_SCORE && player2Points >= player1Points + WINNING_MARGIN) {
+        } else if (player2Points >= gameWinningScore && player2Points >= player1Points + WINNING_MARGIN) {
             return 2;
         } else {
             return -1;
