@@ -43,6 +43,19 @@ public class MatchTest {
     }
 
     @Test
+    void score_player1Wins6Player2Wins5_returnsCorrectScoreAndNoWinner() {
+        Match match = new Match("player 1", "player 2");
+        for (int i = 0; i < 5; i++) {
+            playerScores(4, match, "player 1");
+            playerScores(4, match, "player 2");
+        }
+        playerScores(4, match, "player 1");
+        String expected = "6-5, 0-0";
+        String actual = match.score();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     void score_playersWin6GamesEachAndPlayer1ScoresOnce_returnsCorrectScore() {
         Match match = new Match("player 1", "player 2");
         for (int i = 0; i < 6; i++) {
