@@ -2,18 +2,32 @@ package main;
 
 public class Game {
 
+    /** If a player reaches this score and is ahead by WINNING_MARGIN then they win the game */
     private static final int WINNING_SCORE = 4;
+
+    /** If a player reaches the WINNING_SCORE and is ahead by this margin then they win the game */
     private static final int WINNING_MARGIN = 2;
 
+    /** True if this game is a tie breaker, in which case the score will be 1, 2, 3 rather than 15, 30, 40 */
     private final boolean isTieBreaker;
 
+    /** The name entered for player 1 */
     private final String player1;
+
+    /** The name entered for player 2 */
     private final String player2;
 
+    /** The number of points player 1 has (0, 1, 2...) */
     private int player1Points;
+
+    /** The number of points player 2 has (0, 1, 2...) */
     private int player2Points;
 
 
+    /**
+     * Create a new game with two player names and whether the game is a tie breaker.
+     * Both player's points will start at zero
+     */
     public Game(String player1, String player2, boolean isTieBreaker) {
         this.isTieBreaker = isTieBreaker;
         this.player1 = player1;
