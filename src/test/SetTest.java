@@ -49,7 +49,7 @@ public class SetTest {
     void getWinner_playersWin6SetsEachThenPlayer2Wins_returnsNoWinner() {
         Set set = new Set("player 1", "player 2");
         winsGamesEach(6, set);
-        for (int j = 0; j < 4; j++) {
+        for (int j = 0; j < 7; j++) {
             set.player2WinsPoint();
         }
         int expected = 2;

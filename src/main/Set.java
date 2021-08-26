@@ -44,7 +44,7 @@ public class Set {
      * If either player is about to reach the MAX_WINNING_SCORE then the game will be scored as a tie breaker.
      */
     private void startNewGame() {
-        boolean isTiebreaker = player1Score == MAX_WINNING_SCORE - 1 || player2Score == MAX_WINNING_SCORE - 1;
+        boolean isTiebreaker = player1Score == MAX_WINNING_SCORE - 1 && player2Score == MAX_WINNING_SCORE - 1;
         game = new Game(player1, player2, isTiebreaker);
     }
 
